@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terraform AWS Project</title>
+</head>
+<body>
+  <h1>פרויקט AWS + Terraform</h1>
+
+  <p id="status">עדיין לא בוצעה בדיקה.</p>
+
+  <button onclick="checkBackend()">
+    בדוק חיבור ל־Backend
+  </button>
+
+  <script>
+    async function checkBackend() {
+      const statusElement = document.getElementById("status");
+
+      statusElement.textContent = "בודק את ה־Backend...";
+
+      try {
+        const response = await fetch("/api/health");
+
+        if (!response.ok) {
+          throw new Error(`HTTP error: ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        statusElement.textContent =
+          `Backend status: ${data.status} | Service: ${data.service}`;
+      } catch (error) {
+        statusElement.textContent = `החיבור נכשל: ${error.message}`;
+      }
+    }
+  </script>
+</body>
+</html>
