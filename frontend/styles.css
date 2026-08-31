@@ -224,3 +224,75 @@ footer {
     width: 100%;
   }
 }
+.dashboard-container {
+  max-width: 1000px;
+}
+
+.admin-card,
+.dashboard-results {
+  margin-bottom: 24px;
+  padding: 24px;
+  text-align: right;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 18px;
+  background: rgba(2, 6, 23, 0.45);
+}
+
+.admin-card .form-field {
+  margin-bottom: 18px;
+}
+
+.dashboard-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.visitor-count {
+  padding: 7px 12px;
+  border-radius: 999px;
+  color: #7dd3fc;
+  background: rgba(14, 165, 233, 0.12);
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 14px;
+  text-align: right;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.15);
+}
+
+th {
+  color: #7dd3fc;
+  background: rgba(15, 23, 42, 0.65);
+}
+
+td {
+  color: #e2e8f0;
+}
+
+tbody tr:hover {
+  background: rgba(56, 189, 248, 0.06);
+}
+
+.back-link {
+  display: inline-block;
+  margin-top: 8px;
+  color: #7dd3fc;
+  text-decoration: none;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}

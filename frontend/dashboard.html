@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>H H E | Admin Dashboard</title>
+
+  <link rel="stylesheet" href="styles.css">
+  <script src="dashboard.js" defer></script>
+</head>
+
+<body>
+  <main class="container dashboard-container">
+    <div class="logo">HHE</div>
+
+    <div class="badge">Admin Dashboard</div>
+
+    <h1>
+      ניהול מבקרים
+    </h1>
+
+    <p class="description">
+      צפייה ברשומות שנשלחו מטופס המבקרים.
+    </p>
+
+    <section class="admin-card">
+      <form id="admin-form">
+        <div class="form-field">
+          <label for="admin-token">Admin Token</label>
+
+          <input
+            id="admin-token"
+            type="password"
+            autocomplete="off"
+            placeholder="הזן Admin Token"
+            required
+          >
+        </div>
+
+        <button id="load-button" type="submit">
+          טען רשומות
+        </button>
+
+        <p id="dashboard-message" class="form-message"></p>
+      </form>
+    </section>
+
+    <section id="results-section" class="dashboard-results" hidden>
+      <div class="dashboard-header">
+        <h2>רשומות אחרונות</h2>
+
+        <span id="visitor-count" class="visitor-count">
+          0 רשומות
+        </span>
+      </div>
+
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>מזהה</th>
+              <th>שם</th>
+              <th>גיל</th>
+              <th>תאריך יצירה</th>
+            </tr>
+          </thead>
+
+          <tbody id="visitors-table-body"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <a class="back-link" href="/">
+      חזרה לאתר
+    </a>
+
+    <footer>
+      H H E · Private Administration Area
+    </footer>
+  </main>
+</body>
+</html>
