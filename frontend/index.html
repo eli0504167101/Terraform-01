@@ -6,173 +6,8 @@
 
   <title>H H E | AWS + Terraform</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-      font-family: Arial, sans-serif;
-      color: #f8fafc;
-      background:
-        radial-gradient(circle at top right, #2563eb 0%, transparent 35%),
-        radial-gradient(circle at bottom left, #7c3aed 0%, transparent 35%),
-        #0f172a;
-    }
-
-    .container {
-      width: 100%;
-      max-width: 760px;
-      padding: 48px;
-      text-align: center;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      border-radius: 28px;
-      background: rgba(15, 23, 42, 0.75);
-      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.35);
-      backdrop-filter: blur(16px);
-    }
-
-    .logo {
-      width: 88px;
-      height: 88px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 24px;
-      border-radius: 24px;
-      font-size: 25px;
-      font-weight: bold;
-      letter-spacing: 3px;
-      color: white;
-      background: linear-gradient(135deg, #38bdf8, #7c3aed);
-      box-shadow: 0 12px 35px rgba(56, 189, 248, 0.3);
-    }
-
-    .badge {
-      display: inline-block;
-      margin-bottom: 18px;
-      padding: 7px 14px;
-      border: 1px solid rgba(56, 189, 248, 0.35);
-      border-radius: 999px;
-      font-size: 14px;
-      color: #7dd3fc;
-      background: rgba(14, 165, 233, 0.1);
-    }
-
-    h1 {
-      margin-bottom: 16px;
-      font-size: clamp(32px, 6vw, 54px);
-      line-height: 1.15;
-    }
-
-    h1 span {
-      color: #38bdf8;
-    }
-
-    .description {
-      max-width: 560px;
-      margin: 0 auto 32px;
-      color: #cbd5e1;
-      font-size: 18px;
-      line-height: 1.7;
-    }
-
-    .technology-list {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-      margin-bottom: 32px;
-    }
-
-    .technology {
-      padding: 9px 15px;
-      border-radius: 12px;
-      color: #e2e8f0;
-      background: rgba(255, 255, 255, 0.08);
-    }
-
-    .status-card {
-      margin-bottom: 24px;
-      padding: 20px;
-      border: 1px solid rgba(148, 163, 184, 0.2);
-      border-radius: 16px;
-      background: rgba(2, 6, 23, 0.45);
-    }
-
-    .status-title {
-      margin-bottom: 10px;
-      color: #94a3b8;
-      font-size: 14px;
-    }
-
-    #status {
-      color: #e2e8f0;
-      font-weight: bold;
-      line-height: 1.5;
-    }
-
-    #status.success {
-      color: #4ade80;
-    }
-
-    #status.error {
-      color: #fb7185;
-    }
-
-    button {
-      border: none;
-      border-radius: 14px;
-      padding: 15px 28px;
-      cursor: pointer;
-      font-size: 16px;
-      font-weight: bold;
-      color: white;
-      background: linear-gradient(135deg, #0ea5e9, #7c3aed);
-      box-shadow: 0 10px 30px rgba(14, 165, 233, 0.25);
-      transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
-    }
-
-    button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 14px 35px rgba(14, 165, 233, 0.4);
-    }
-
-    button:disabled {
-      cursor: wait;
-      opacity: 0.65;
-      transform: none;
-    }
-
-    footer {
-      margin-top: 30px;
-      color: #64748b;
-      font-size: 14px;
-    }
-
-    @media (max-width: 600px) {
-      .container {
-        padding: 32px 20px;
-      }
-
-      .description {
-        font-size: 16px;
-      }
-
-      button {
-        width: 100%;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
 </head>
 
 <body>
@@ -188,7 +23,7 @@
 
     <p class="description">
       פרויקט DevOps המשלב תשתית AWS שנבנתה באמצעות Terraform,
-      שרתי Frontend ו־Backend פרטיים ויישומים שרצים בתוך Docker.
+      שרתי Frontend ו־Backend ויישומים שרצים בתוך Docker.
     </p>
 
     <div class="technology-list">
@@ -199,12 +34,61 @@
       <div class="technology">Flask</div>
     </div>
 
-    <section class="status-card">
-      <div class="status-title">מצב החיבור ל־Backend</div>
-      <p id="status">לחץ על הכפתור כדי לבדוק את החיבור.</p>
+    <section class="form-card">
+      <h2>השאר פרטים</h2>
+
+      <p class="form-description">
+        הזן שם וגיל כדי לבדוק שמירת מידע ב־Backend הפרטי.
+        השתמש כרגע בנתוני בדיקה בלבד.
+      </p>
+
+      <form id="visitor-form">
+        <div class="form-grid">
+          <div class="form-field">
+            <label for="visitor-name">שם</label>
+
+            <input
+              id="visitor-name"
+              name="name"
+              type="text"
+              maxlength="100"
+              placeholder="לדוגמה: Test User"
+              required
+            >
+          </div>
+
+          <div class="form-field">
+            <label for="visitor-age">גיל</label>
+
+            <input
+              id="visitor-age"
+              name="age"
+              type="number"
+              min="1"
+              max="120"
+              placeholder="30"
+              required
+            >
+          </div>
+        </div>
+
+        <button id="submit-button" type="submit">
+          שמור פרטים
+        </button>
+
+        <p id="form-message" class="form-message"></p>
+      </form>
     </section>
 
-    <button id="check-button" type="button" onclick="checkBackend()">
+    <section class="status-card">
+      <div class="status-title">מצב החיבור ל־Backend</div>
+
+      <p id="status">
+        לחץ על הכפתור כדי לבדוק את החיבור.
+      </p>
+    </section>
+
+    <button id="check-button" type="button">
       בדוק חיבור ל־Backend
     </button>
 
@@ -212,36 +96,5 @@
       H H E · AWS + Terraform Mini Project
     </footer>
   </main>
-
-  <script>
-    async function checkBackend() {
-      const statusElement = document.getElementById("status");
-      const buttonElement = document.getElementById("check-button");
-
-      statusElement.className = "";
-      statusElement.textContent = "בודק את החיבור ל־Backend...";
-      buttonElement.disabled = true;
-
-      try {
-        const response = await fetch("/api/health");
-
-        if (!response.ok) {
-          throw new Error(`HTTP ${response.status}`);
-        }
-
-        const data = await response.json();
-
-        statusElement.className = "success";
-        statusElement.textContent =
-          `החיבור הצליח — Service: ${data.service} | Status: ${data.status}`;
-      } catch (error) {
-        statusElement.className = "error";
-        statusElement.textContent =
-          `החיבור נכשל: ${error.message}`;
-      } finally {
-        buttonElement.disabled = false;
-      }
-    }
-  </script>
 </body>
 </html>
