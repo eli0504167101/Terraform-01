@@ -1,5 +1,6 @@
 import os
 import sqlite3
+import hmac
 from datetime import datetime, timezone
 
 from flask import Flask, jsonify, request
@@ -10,13 +11,36 @@ DATABASE_PATH = os.getenv(
     "DATABASE_PATH",
     "/data/visitors.db"
 )
-
+ADMIN_TOKEN = os.getenv("ADMIN_TOKEN", "")
 
 def get_database_connection():
     connection = sqlite3.connect(DATABASE_PATH)
     connection.row_factory = sqlite3.Row
     return connection
 
+@app.get("/visitors")
+def list_visitors():
+    provided_token = request.headers.get("X-Admin-Token", "")
+
+    if not ADMIN_TOKEN:
+        return jsonify(error="Admin token is not configured"), 503
+
+    if not hmac.compare_digest(provided_token, ADMIN_TOKEN):
+        return jsonify(error="Unauthorized"), 401
+
+    with get_database_connection() as connection:
+        rows = connection.execute(
+            """
+            SELECT id, name, age, created_at
+            FROM visitors
+            ORDER BY id DESC
+            LIMIT 100
+            """
+        ).fetchall()
+
+    visitors = [dict(row) for row in rows]
+
+    return jsonify(visitors=visitors)
 
 def initialize_database():
     database_directory = os.path.dirname(DATABASE_PATH)
