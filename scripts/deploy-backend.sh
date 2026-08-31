@@ -28,6 +28,7 @@ docker run \
   --name "${CONTAINER_NAME}" \
   --restart unless-stopped \
   -p 5000:5000 \
+  -v backend-data:/data \
   "${IMAGE_NAME}"
-
+  
 docker ps --filter "name=${CONTAINER_NAME}"
